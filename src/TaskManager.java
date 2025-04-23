@@ -73,8 +73,8 @@ public final class TaskManager {
 
     public void clearAllTasks(){
         tasks.clear();
-        for(Integer id : epics.keySet()) {
-            epics.get(id).clearSubTasks();
+        for(Epic epicTask : epics.values()) {
+           epicTask.clearSubTasks();
         }
         subtasks.clear();
         epics.clear();
