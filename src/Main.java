@@ -15,6 +15,7 @@ public class Main {
         taskManager.createTask(task2);
 
         //Создадим 2 подзадачи и Эпик 1
+        System.out.println("Создадим 2 подзадачи и Эпик 1");
         Subtask subtask1 = new Subtask("Перенести коробки",
                 "Перенести коробки с обувью", TaskStatus.NEW);
         Subtask subtask2 = new Subtask("Перевезти шкаф",
@@ -29,6 +30,9 @@ public class Main {
         Epic epicTask1 = new Epic("Перевозка вещей",
                 "Перевозка вещей на другую квартиру", TaskStatus.NEW, subtasksMap);
         taskManager.createEpicTask(epicTask1);
+        System.out.println("Распечатаем все задачи Эпика 1");
+        System.out.println(taskManager.getSubtasksFromEpic(epicTask1));
+        System.out.println();
 
         //Создадим подзадачу и Эпик 2
         Subtask subtask3 = new Subtask("Купить проектор",

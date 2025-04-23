@@ -64,15 +64,17 @@ public final class TaskManager {
         updateEpicStatus(newEpic);
     }
 
-    public HashMap<Integer, Subtask> getSubtastksFromEpic(Epic task) {
-        if (epics.containsKey(task.getId())) {
-            return epics.get(task.getId()).getSubtasks();
+    public HashMap<Integer, Subtask> getSubtasksFromEpic(Epic epicTask) {
+        if (epics.get(epicTask.getId()) != null) {
+            return epics.get(epicTask.getId()).getSubtasks();
         }
         return null;
     }
 
     public void ClearAllTasks(){
         tasks.clear();
+
+
         subtasks.clear();
         epics.clear();
     }
