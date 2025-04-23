@@ -100,9 +100,9 @@ public class Main {
         System.out.println();
 
         System.out.println("Выведем текущие задачи:");
-        System.out.println(taskManager.getAllTasks());
-        System.out.println(taskManager.getAllEpics());
-        System.out.println(taskManager.getAllSubtasks());
+        System.out.println("Обычные задачи: " + taskManager.getAllTasks());
+        System.out.println("Подзадачи: " + taskManager.getAllSubtasks());
+        System.out.println("Эпики: " + taskManager.getAllEpics());
         System.out.println();
 
         System.out.println("Удаление задач");
@@ -113,18 +113,27 @@ public class Main {
         taskManager.removeSubtaskById(newSubtask3.getId());
 
         System.out.println("Выведем текущие задачи:");
-        System.out.println(taskManager.getAllTasks());
-        System.out.println(taskManager.getAllEpics());
-        System.out.println(taskManager.getAllSubtasks());
+        System.out.println("Обычные задачи: " + taskManager.getAllTasks());
+        System.out.println("Подзадачи: " + taskManager.getAllSubtasks());
+        System.out.println("Эпики: " + taskManager.getAllEpics());
         System.out.println();
 
         System.out.println("Удалим Эпик 2");
         taskManager.removeEpicById(epicTask2.getId());
 
         System.out.println("Выведем окончательный список задач:");
-        System.out.println(taskManager.getAllTasks());
-        System.out.println(taskManager.getAllEpics());
-        System.out.println(taskManager.getAllSubtasks());
+        System.out.println("Обычные задачи: " + taskManager.getAllTasks());
+        System.out.println("Подзадачи: " + taskManager.getAllSubtasks());
+        System.out.println("Эпики: " + taskManager.getAllEpics());
+        System.out.println();
+
+        System.out.println("Очистим все задачи:");
+        taskManager.clearAllTasks();
+
+        System.out.println("Выведем список задач после зачистки:");
+        System.out.println("Обычные задачи: " + taskManager.getAllTasks());
+        System.out.println("Подзадачи: " + taskManager.getAllSubtasks());
+        System.out.println("Эпики: " + taskManager.getAllEpics());
         System.out.println();
     }
 }

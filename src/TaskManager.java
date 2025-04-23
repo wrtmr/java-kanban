@@ -71,10 +71,11 @@ public final class TaskManager {
         return null;
     }
 
-    public void ClearAllTasks(){
+    public void clearAllTasks(){
         tasks.clear();
-
-
+        for(Integer id : epics.keySet()) {
+            epics.get(id).clearSubTasks();
+        }
         subtasks.clear();
         epics.clear();
     }

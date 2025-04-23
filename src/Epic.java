@@ -1,7 +1,7 @@
 import java.util.HashMap;
 
 public final class Epic extends Task {
-    private HashMap<Integer, Subtask> subtasks;
+    private final HashMap<Integer, Subtask> subtasks;
 
     public HashMap<Integer, Subtask> getSubtasks() { return subtasks; }
 
@@ -9,6 +9,10 @@ public final class Epic extends Task {
                 HashMap<Integer, Subtask> subtasks) {
         super(name, description, status);
         this.subtasks = subtasks;
+    }
+
+    public void clearSubTasks() {
+        subtasks.clear();
     }
 
 }
