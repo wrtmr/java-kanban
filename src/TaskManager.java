@@ -2,6 +2,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public final class TaskManager {
+    private int idCounter = 0;
     private final HashMap<Integer, Task> tasks = new HashMap<>();
     private final HashMap<Integer, Subtask> subtasks = new HashMap<>();
     private final HashMap<Integer, Epic> epics = new HashMap<>();
@@ -9,8 +10,6 @@ public final class TaskManager {
     public ArrayList<Task> getAllTasks(){ return new ArrayList<>(tasks.values()); }
     public ArrayList<Subtask> getAllSubtasks(){ return new ArrayList<>(subtasks.values()); }
     public ArrayList<Epic> getAllEpics(){ return new ArrayList<>(epics.values()); }
-
-    private int idCounter = 0;
 
     public void createTask(Task task) {
         task.setId(idCounter);

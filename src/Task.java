@@ -2,7 +2,7 @@ import java.util.Objects;
 
 public class Task {
 
-    private int id;
+    protected int id;
     protected String name;
     protected String description;
     protected TaskStatus status;
@@ -23,7 +23,9 @@ public class Task {
         if (object == null) return false;
         if (this != object && getClass() != object.getClass()) return false;
         Task otherTask = (Task) object;
-        return Objects.equals(this.id, otherTask.getId());
+        return Objects.equals(this.id, otherTask.getId())&&
+                Objects.equals(this.name, otherTask.name)&&
+                Objects.equals(this.description, otherTask.description);
     }
 
     @Override
@@ -33,8 +35,12 @@ public class Task {
             hash += id;
         }
         hash *= 31;
+
         if (name != null) {
             hash += name.hashCode();
+        }
+        if(description != null) {
+            hash += description.hashCode();
         }
         return hash;
     }
