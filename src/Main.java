@@ -30,6 +30,9 @@ public class Main {
         Epic epicTask1 = new Epic("Перевозка вещей",
                 "Перевозка вещей на другую квартиру", TaskStatus.NEW, subtasksMap);
         taskManager.createEpicTask(epicTask1);
+        for(Subtask task : subtasksMap.values()){
+            task.setParentTask(epicTask1);
+        }
         System.out.println("Распечатаем все задачи Эпика 1");
         System.out.println(taskManager.getSubtasksFromEpic(epicTask1));
         System.out.println();
@@ -44,6 +47,9 @@ public class Main {
         Epic epicTask2 = new Epic("Обустроить домашний кинотеатр",
                 "Преобрести все необходимое для домашнего кинотеатра", TaskStatus.NEW, subtasksMap);
         taskManager.createEpicTask(epicTask2);
+        for(Subtask task : subtasksMap.values()){
+            task.setParentTask(epicTask2);
+        }
 
         //Создадим эпик 3
         subtasksMap = new HashMap<>();
