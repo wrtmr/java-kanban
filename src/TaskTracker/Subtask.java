@@ -1,9 +1,11 @@
+package TaskTracker;
+
 import java.util.Objects;
 
 public final class Subtask extends Task {
     private Epic parentTask;
     public Epic getParentTask() { return parentTask; }
-    public void setParentTask(Epic value) { this.parentTask = value; }
+    public void setParentTask(Epic task) { this.parentTask = task; }
     //Геттеры и сеттеры просто использую как Проперти в С# они просто так полстраницы не занимают
     //А то нереально это полотно читать
     public Subtask(String name, String description, TaskStatus status) {
