@@ -65,7 +65,7 @@ public class TaskManagerTest {
         taskManager.createTask(task);
         final List<Task> tasks = taskManager.getAllTasks();
 
-        Assertions.assertEquals(task, tasks.get(0), "Задачи не совпадают");
+        Assertions.assertEquals(task, tasks.getFirst(), "Задачи не совпадают");
     }
 
     @Test
@@ -136,12 +136,18 @@ public class TaskManagerTest {
 
     @Test
     public void checkTaskNotConflictingIdsInsideManager() {
-        //Тут я тоже не понимаю что тестировать, если к примеру в менеджер таска никак мимо метода CreateTask не пройдёт.
-        //А в этом методе любой попавшей таске даже если у неё есть уже ID,
-        // будет присвоен уникальный айди автоматом. Так что с одинаковым ID туда
-        // никак не поместить. Так что пока не вижу что тестировать в этом пункте.
+        Task task = new Task("Налить чай", "Поставить чайник кипятиться, " +
+                "заварить чай, налить в кружку", TaskStatus.NEW);
+        taskManager.createTask(task);
+        Task task2 = new Task("Прикрутить полку", "Взять шурупы, взять дрель, взять + " +
+                "полку, просверлить отверстия", TaskStatus.NEW);
+        task2.setId(task.getId());
+        taskManager.createTask(task2);
+
+        Assertions.assertNotEquals(task2.getId(), task.getId(), "Id задач равны. Они не должны быть равны");
     }
 
+    //На будущее оставлю просто вдруг пригодиться таски готовые дергать чтобы по новой не печатать.
     private void generateTasks(TaskManager taskManager) {
         //Создадим 2 задачи
         Task task1 = new Task("Налить чай", "Поставить чайник кипятиться, " +

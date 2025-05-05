@@ -7,11 +7,10 @@ import org.junit.jupiter.api.Test;
 public class HistoryManagerTest {
 
     private static HistoryManager historyManager;
-    private static Managers managers;
 
     @BeforeAll
     public static void beforeAll() {
-        managers = new Managers();
+        Managers managers = new Managers();
         historyManager = managers.getDefaultHistory();
     }
 
