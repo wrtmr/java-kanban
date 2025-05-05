@@ -1,3 +1,5 @@
+package TaskTracker;
+
 import java.util.Objects;
 
 public class Task {
@@ -8,6 +10,8 @@ public class Task {
     protected TaskStatus status;
 
     public int getId() { return id;}
+    public String getName() { return name; }
+    public String getDescription() { return description; }
     public void setId(int id) {this.id = id;}
     public void setStatus(TaskStatus status) { this.status = status;}
     public TaskStatus getStatus() {return status;}
@@ -47,7 +51,7 @@ public class Task {
 
     @Override
     public String toString(){
-        return "Task ID: " + id + ", " +
+        return "TaskTracker.Task ID: " + id + ", " +
                 "Name: " + name +", " +
                 "Description: " + description + ", " +
                 "Status: " + status + ".";
