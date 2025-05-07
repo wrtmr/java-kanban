@@ -5,14 +5,18 @@ import java.util.HashMap;
 import java.util.List;
 
 public final class InMemoryTaskManager implements TaskManager {
-    private int idCounter = 0;
+    private int idCounter;
     private boolean isInitialized = false;
-    private final HashMap<Integer, Task> tasks = new HashMap<>();
-    private final HashMap<Integer, Subtask> subtasks = new HashMap<>();
-    private final HashMap<Integer, Epic> epics = new HashMap<>();
+    private final HashMap<Integer, Task> tasks;
+    private final HashMap<Integer, Subtask> subtasks;
+    private final HashMap<Integer, Epic> epics;
     private final HistoryManager historyManager;
 
     public InMemoryTaskManager(HistoryManager historyManager){
+        idCounter = 0;
+        tasks = new HashMap<>();
+        subtasks = new HashMap<>();
+        epics = new HashMap<>();
         this.historyManager = historyManager;
         if (this.historyManager == null) {
             System.out.println("History manager is Null. Initialization stopped.");
