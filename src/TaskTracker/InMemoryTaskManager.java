@@ -173,8 +173,6 @@ public final class InMemoryTaskManager implements TaskManager {
         epics.remove(id);
     }
 
-
-
     private void updateEpicStatus(Epic epicTask) {
         if (epicTask.getSubtasks().isEmpty()) {
             epicTask.setStatus(TaskStatus.NEW);

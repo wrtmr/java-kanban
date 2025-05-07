@@ -5,7 +5,11 @@ import java.util.List;
 
 public final class InMemoryHistoryManager implements HistoryManager{
     private static final int HISTORY_LENGTH = 10;
-    private final List<Task> viewHistory = new ArrayList<>();
+    private final List<Task> viewHistory;
+
+    public InMemoryHistoryManager() {
+        viewHistory = new ArrayList<>();
+    }
 
     @Override
     public List<Task> getHistory() {
