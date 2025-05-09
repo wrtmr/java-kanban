@@ -1,5 +1,8 @@
 package TaskTracker;
-
+import TaskTracker.Managers.HistoryManager;
+import TaskTracker.Managers.Managers;
+import TaskTracker.Managers.TaskManager;
+import TaskTracker.Tasks.*;
 import java.util.HashMap;
 
 public class Main {
@@ -92,8 +95,8 @@ public class Main {
         {
 //            //Oбновим эпик 3
 //            subtasksMap = new HashMap<>();
-//            TaskTracker.Epic updatedEpicTask3 = new TaskTracker.Epic("Обустроить домашний кинотеатр и кухню",
-//                    "Преобрести все необходимое для домашнего кинотеатра и кухни", TaskTracker.TaskStatus.NEW, subtasksMap);
+//            TaskTracker.TaskTracker.Tasks.Epic updatedEpicTask3 = new TaskTracker.TaskTracker.Tasks.Epic("Обустроить домашний кинотеатр и кухню",
+//                    "Преобрести все необходимое для домашнего кинотеатра и кухни", TaskTracker.Tasks.TaskStatus.NEW, subtasksMap);
 //            taskManager.updateEpicById(epicTask3.getId(), updatedEpicTask3);
 //            System.out.println("Эпик 3 после обновления: ");
 //            System.out.println(taskManager.getEpicById(epicTask3.getId()));
@@ -115,10 +118,10 @@ public class Main {
 //
 //            //Поменяем статус сабтасков для Эпика 1
 //            System.out.println("Поменяем статус подзадач для Эпика 1");
-//            TaskTracker.Subtask newSubtask1 = new TaskTracker.Subtask("Перенести коробки",
-//                    "Перенести коробки с обувью", TaskTracker.TaskStatus.DONE);
-//            TaskTracker.Subtask newSubtask2 = new TaskTracker.Subtask("Перевезти шкаф",
-//                    "Погрузить шкаф в автомобиль и перевезти на новое место", TaskTracker.TaskStatus.DONE);
+//            TaskTracker.TaskTracker.Tasks.Subtask newSubtask1 = new TaskTracker.TaskTracker.Tasks.Subtask("Перенести коробки",
+//                    "Перенести коробки с обувью", TaskTracker.Tasks.TaskStatus.DONE);
+//            TaskTracker.TaskTracker.Tasks.Subtask newSubtask2 = new TaskTracker.TaskTracker.Tasks.Subtask("Перевезти шкаф",
+//                    "Погрузить шкаф в автомобиль и перевезти на новое место", TaskTracker.Tasks.TaskStatus.DONE);
 //            taskManager.updateSubtaskById(subtask1.getId(), newSubtask1);
 //            taskManager.updateSubtaskById(subtask2.getId(), newSubtask2);
 //
@@ -128,8 +131,8 @@ public class Main {
 //
 //            //Поменяем статус подзадачи для Эпика 2
 //            System.out.println("Поменяем статус подзадачи для Эпика 2");
-//            TaskTracker.Subtask newSubtask3 = new TaskTracker.Subtask("Купить проектор",
-//                    "Съездить в магазин, выбрать проектор, купить проектор", TaskTracker.TaskStatus.DONE);
+//            TaskTracker.TaskTracker.Tasks.Subtask newSubtask3 = new TaskTracker.TaskTracker.Tasks.Subtask("Купить проектор",
+//                    "Съездить в магазин, выбрать проектор, купить проектор", TaskTracker.Tasks.TaskStatus.DONE);
 //            taskManager.updateSubtaskById(subtask3.getId(), newSubtask3);
 //            System.out.println("Эпик 2 после изменения подзадачи: ");
 //            System.out.println(epicTask2);
