@@ -1,4 +1,5 @@
-package TaskTracker;
+package TaskTracker.Tasks;
+
 
 import java.util.Objects;
 
@@ -51,7 +52,7 @@ public class Task {
 
     @Override
     public String toString(){
-        return "TaskTracker.Task ID: " + id + ", " +
+        return "TaskTracker.TaskTracker.Tasks.Task ID: " + id + ", " +
                 "Name: " + name +", " +
                 "Description: " + description + ", " +
                 "Status: " + status + ".";

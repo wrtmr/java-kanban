@@ -1,4 +1,4 @@
-package TaskTracker;
+package TaskTracker.Tasks;
 
 import java.util.Objects;
 

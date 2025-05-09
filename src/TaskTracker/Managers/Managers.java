@@ -1,4 +1,4 @@
-package TaskTracker;
+package TaskTracker.Managers;
 
 public final class Managers {
 
