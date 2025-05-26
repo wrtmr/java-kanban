@@ -1,9 +1,9 @@
 package managersTests;
 
-import taskTracker.managers.HistoryManager;
-import taskTracker.managers.InMemoryHistoryManager;
-import taskTracker.managers.Managers;
-import taskTracker.managers.TaskManager;
+import tasktracker.managers.HistoryManager;
+import tasktracker.managers.InMemoryHistoryManager;
+import tasktracker.managers.Managers;
+import tasktracker.managers.TaskManager;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;

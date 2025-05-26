@@ -1,4 +1,4 @@
-package taskTracker.managers;
+package tasktracker.managers;
 
 public final class Managers {
 

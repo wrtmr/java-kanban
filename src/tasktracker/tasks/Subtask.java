@@ -1,34 +1,30 @@
-package taskTracker.tasks;
+package tasktracker.tasks;
 
-import java.util.HashMap;
 import java.util.Objects;
 
-public final class Epic extends Task {
-    private final HashMap<Integer, Subtask> subtasks;
+public final class Subtask extends Task {
+    private Epic parentTask;
 
-    public Epic(String name, String description, TaskStatus status,
-                HashMap<Integer, Subtask> subtasks) {
+    public Subtask(String name, String description, TaskStatus status) {
         super(name, description, status);
-        this.subtasks = subtasks;
     }
 
-    public HashMap<Integer, Subtask> getSubtasks() {
-        return subtasks;
+    public Epic getParentTask() {
+        return parentTask;
     }
-
-    public void clearSubTasks() {
-        subtasks.clear();
+    public void setParentTask(Epic task) {
+        this.parentTask = task;
     }
 
     @Override
     public boolean equals(Object object) {
         if (object == null) return false;
         if (this != object && getClass() != object.getClass()) return false;
-        Epic otherTask = (Epic) object;
+        Subtask otherTask = (Subtask) object;
         return Objects.equals(this.id, otherTask.getId())&&
                 Objects.equals(this.name, otherTask.name)&&
                 Objects.equals(this.description, otherTask.description) &&
-                Objects.equals(this.subtasks, otherTask.subtasks);
+                Objects.equals(this.parentTask, otherTask.getParentTask());
     }
 
     @Override
@@ -45,8 +41,8 @@ public final class Epic extends Task {
         if(description != null) {
             hash += description.hashCode();
         }
-        if(subtasks != null){
-            hash += subtasks.hashCode();
+        if(parentTask != null){
+            hash += parentTask.hashCode();
         }
         return hash;
     }
