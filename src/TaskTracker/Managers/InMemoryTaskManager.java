@@ -26,13 +26,24 @@ public final class InMemoryTaskManager implements TaskManager {
     }
 
     @Override
-    public boolean getInitializationStatus(){ return isInitialized;}
+    public boolean getInitializationStatus() {
+        return isInitialized;
+    }
+
     @Override
-    public ArrayList<Task> getAllTasks(){ return new ArrayList<>(tasks.values()); }
+    public ArrayList<Task> getAllTasks() {
+        return new ArrayList<>(tasks.values());
+    }
+
     @Override
-    public ArrayList<Subtask> getAllSubtasks(){ return new ArrayList<>(subtasks.values()); }
+    public ArrayList<Subtask> getAllSubtasks() {
+        return new ArrayList<>(subtasks.values());
+    }
+
     @Override
-    public ArrayList<Epic> getAllEpics(){ return new ArrayList<>(epics.values()); }
+    public ArrayList<Epic> getAllEpics() {
+        return new ArrayList<>(epics.values());
+    }
 
     @Override
     public List<Task> getHistory() {

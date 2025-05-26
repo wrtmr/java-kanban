@@ -9,15 +9,29 @@ public class Task {
     protected String description;
     protected TaskStatus status;
 
-    public int getId() { return id;}
-    public String getName() { return name; }
-    public String getDescription() { return description; }
+    public int getId() {
+        return id;
+    }
+    public String getName() {
+        return name;
+    }
+    public String getDescription() {
+        return description;
+    }
 
     //Не придумал пока что делать с этими пабликами. В голову пока тяжеловесные решения лезут
     //В материалах по обучению такого не касались. Если найду материал доделаю.
-    public void setId(int id) { this.id = id;}
-    public void setStatus(TaskStatus status) { this.status = status;}
-    public TaskStatus getStatus() {return status;}
+    public void setId (int id) {
+        this.id = id;
+    }
+
+    public void setStatus(TaskStatus status) {
+        this.status = status;
+    }
+
+    public TaskStatus getStatus() {
+        return status;
+    }
 
     public Task(String name, String description, TaskStatus status) {
         this.name = name;
