@@ -12,15 +12,27 @@ public class Node<T> {
         this.prev = null;
     }
 
-    public Node<T> getNextNode() { return next; }
+    public Node<T> getNextNode() {
+        return next;
+    }
 
-    public void setNextNode(Node<T> nextNode) { this.next = nextNode; }
+    public void setNextNode(Node<T> nextNode) {
+        this.next = nextNode;
+    }
 
-    public Node<T> getPreviousNode() { return prev; }
+    public Node<T> getPreviousNode() {
+        return prev;
+    }
 
-    public void setPreviousNode(Node<T> previousNode) { this.prev = previousNode;}
+    public void setPreviousNode(Node<T> previousNode) {
+        this.prev = previousNode;
+    }
 
-    public T getValue() { return value; }
+    public T getValue() {
+        return value;
+    }
 
-    public void setValue(T value) { this.value = value; }
+    public void setValue(T value) {
+        this.value = value;
+    }
 }
