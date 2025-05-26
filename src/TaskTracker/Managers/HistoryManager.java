@@ -1,12 +1,10 @@
 package TaskTracker.Managers;
-
 import TaskTracker.Tasks.*;
-
-import java.util.LinkedList;
+import java.util.List;
 
 
 public interface HistoryManager {
-    LinkedList<Task> getHistory();
-
+    List<Task> getHistory();
+    void remove(int id);
     void add (Task task);
 }

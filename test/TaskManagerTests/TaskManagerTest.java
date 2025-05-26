@@ -103,26 +103,6 @@ public class TaskManagerTest {
     }
 
     @Test
-    public void epicIsNotSetAsOwnSubtask() {
-        //У меня никак не добавить в эпик его же самого, потому что строго типизированный мэп с сабтасками подается в конструктор
-        //при создании эпика. Это исходя из того функционала который мы делали на прошлом задании. Если надо сделать
-        //так, чтобы в эпик можно было в рантайме задачи добавлять любого типа, то это надо было бы в тз описать.
-    }
-
-    @Test
-    public void subtaskIsNotSetAsOwnSubtask() {
-//        Тут тоже строготипизированный сеттер. Никак не послать в него себя же.
-//        TaskTracker.TaskTracker.Tasks.Subtask subtask = new TaskTracker.TaskTracker.Tasks.Subtask("Перенести коробки",
-//                "Перенести коробки с обувью", TaskTracker.Tasks.TaskStatus.NEW);
-//        taskManager.createSubtask(subtask);
-//        HashMap<Integer, TaskTracker.TaskTracker.Tasks.Subtask> subtasksMap = new HashMap<>();
-//        subtasksMap.put(subtask.getId(), subtask);
-//        for (TaskTracker.TaskTracker.Tasks.Subtask task : subtasksMap.values()) {
-//            task.setParentTask(task);
-//        }
-    }
-
-    @Test
     public void immutableFieldsWhileCreatingNewTask() {
         Task task = new Task("Налить чай", "Поставить чайник кипятиться, " +
                 "заварить чай, налить в кружку", TaskStatus.NEW);
@@ -150,146 +130,41 @@ public class TaskManagerTest {
         Assertions.assertNotEquals(task2.getId(), task.getId(), "Id задач равны. Они не должны быть равны");
     }
 
-    //На будущее оставлю просто вдруг пригодиться таски готовые дергать чтобы по новой не печатать.
-    private void generateTasks(TaskManager taskManager) {
-        //Создадим 2 задачи
-        Task task1 = new Task("Налить чай", "Поставить чайник кипятиться, " +
-                "заварить чай, налить в кружку", TaskStatus.NEW);
-        Task task2 = new Task("Прикрутить полку", "Взять шурупы, взять дрель, взять + " +
-                "полку, просверлить отверстия", TaskStatus.NEW);
-        taskManager.createTask(task1);
-        taskManager.createTask(task2);
+    @Test
+    public void allIDsInEpicHaveSubtasks() {
 
-        //Создадим 2 подзадачи и Эпик 1
-        System.out.println("Создадим 2 подзадачи и Эпик 1");
         Subtask subtask1 = new Subtask("Перенести коробки",
                 "Перенести коробки с обувью", TaskStatus.NEW);
         Subtask subtask2 = new Subtask("Перевезти шкаф",
                 "Погрузить шкаф в автомобиль и перевезти на новое место", TaskStatus.NEW);
+        Subtask subtask3 = new Subtask("Спустить холодильник",
+                "Спустить холодильник на первый этаж и погрузить в машину", TaskStatus.NEW);
+
         taskManager.createSubtask(subtask1);
         taskManager.createSubtask(subtask2);
+        taskManager.createSubtask(subtask3);
 
         HashMap<Integer, Subtask> subtasksMap = new HashMap<>();
         subtasksMap.put(subtask1.getId(), subtask1);
         subtasksMap.put(subtask2.getId(), subtask2);
+        subtasksMap.put(subtask3.getId(), subtask2);
 
         Epic epicTask1 = new Epic("Перевозка вещей",
                 "Перевозка вещей на другую квартиру", TaskStatus.NEW, subtasksMap);
+
         taskManager.createEpicTask(epicTask1);
+
         for (Subtask task : subtasksMap.values()) {
             task.setParentTask(epicTask1);
         }
 
-        //Создадим подзадачу и Эпик 2
-        Subtask subtask3 = new Subtask("Купить проектор",
-                "Съездить в магазин, выбрать проектор, купить проектор", TaskStatus.NEW);
-        taskManager.createSubtask(subtask3);
-        subtasksMap = new HashMap<>();
-        subtasksMap.put(subtask3.getId(), subtask3);
+        Subtask savedSubtask1 = taskManager.getSubtaskById(subtask1.getId());
+        Subtask savedSubtask2 = taskManager.getSubtaskById(subtask2.getId());
+        Subtask savedSubtask3 = taskManager.getSubtaskById(subtask3.getId());
 
-        Epic epicTask2 = new Epic("Обустроить домашний кинотеатр",
-                "Преобрести все необходимое для домашнего кинотеатра", TaskStatus.NEW, subtasksMap);
-        taskManager.createEpicTask(epicTask2);
-        for (Subtask task : subtasksMap.values()) {
-            task.setParentTask(epicTask2);
-        }
-
-        //Создадим эпик 3
-        subtasksMap = new HashMap<>();
-        Epic epicTask3 = new Epic("Обустроить домашний кинотеатр",
-                "Преобрести все необходимое для домашнего кинотеатра", TaskStatus.NEW, subtasksMap);
-        taskManager.createEpicTask(epicTask3);
-
-
-
-        {
-//            //Oбновим эпик 3
-//            subtasksMap = new HashMap<>();
-//            TaskTracker.TaskTracker.Tasks.Epic updatedEpicTask3 = new TaskTracker.TaskTracker.Tasks.Epic("Обустроить домашний кинотеатр и кухню",
-//                    "Преобрести все необходимое для домашнего кинотеатра и кухни", TaskTracker.Tasks.TaskStatus.NEW, subtasksMap);
-//            taskManager.updateEpicById(epicTask3.getId(), updatedEpicTask3);
-//            System.out.println("Эпик 3 после обновления: ");
-//            System.out.println(taskManager.getEpicById(epicTask3.getId()));
-//            System.out.println();
-//
-//            //Поменяем статусы обычных задач
-            Task newTask1 = new Task("Налить чай", "Поставить чайник кипятиться, " +
-                    "заварить чай, налить в кружку", TaskStatus.IN_PROGRESS);
-            Task newTask2 = new Task("Прикрутить полку", "Взять шурупы, взять дрель, взять + " +
-                    "полку, просверлить отверстия", TaskStatus.DONE);
-
-            taskManager.updateTaskById(task1.getId(), newTask1);
-            taskManager.updateTaskById(task2.getId(), newTask2);
-//
-//            System.out.println("Обычные задачаи после изменения: ");
-//            System.out.println(taskManager.getTaskById(task1.getId()));
-//            System.out.println(taskManager.getTaskById(task2.getId()));
-//            System.out.println();
-//
-//            //Поменяем статус сабтасков для Эпика 1
-//            System.out.println("Поменяем статус подзадач для Эпика 1");
-//            TaskTracker.TaskTracker.Tasks.Subtask newSubtask1 = new TaskTracker.TaskTracker.Tasks.Subtask("Перенести коробки",
-//                    "Перенести коробки с обувью", TaskTracker.Tasks.TaskStatus.DONE);
-//            TaskTracker.TaskTracker.Tasks.Subtask newSubtask2 = new TaskTracker.TaskTracker.Tasks.Subtask("Перевезти шкаф",
-//                    "Погрузить шкаф в автомобиль и перевезти на новое место", TaskTracker.Tasks.TaskStatus.DONE);
-//            taskManager.updateSubtaskById(subtask1.getId(), newSubtask1);
-//            taskManager.updateSubtaskById(subtask2.getId(), newSubtask2);
-//
-//            System.out.println("Эпик 1 после изменения подзадачи: ");
-//            System.out.println(epicTask1);
-//            System.out.println();
-//
-//            //Поменяем статус подзадачи для Эпика 2
-//            System.out.println("Поменяем статус подзадачи для Эпика 2");
-//            TaskTracker.TaskTracker.Tasks.Subtask newSubtask3 = new TaskTracker.TaskTracker.Tasks.Subtask("Купить проектор",
-//                    "Съездить в магазин, выбрать проектор, купить проектор", TaskTracker.Tasks.TaskStatus.DONE);
-//            taskManager.updateSubtaskById(subtask3.getId(), newSubtask3);
-//            System.out.println("Эпик 2 после изменения подзадачи: ");
-//            System.out.println(epicTask2);
-//            System.out.println();
-//
-//            System.out.println("Выведем текущие задачи:");
-//            System.out.println("Обычные задачи: " + taskManager.getAllTasks());
-//            System.out.println("Подзадачи: " + taskManager.getAllSubtasks());
-//            System.out.println("Эпики: " + taskManager.getAllEpics());
-//            System.out.println();
-//
-//            System.out.println("Удаление задач");
-//            System.out.println("Удалим подзадачу из Эпика 1");
-//            taskManager.removeSubtaskById(newSubtask2.getId());
-//
-//            System.out.println("Удалим подзадачу из Эпика 2");
-//            taskManager.removeSubtaskById(newSubtask3.getId());
-//
-//            System.out.println("Выведем текущие задачи:");
-//            System.out.println("Обычные задачи: " + taskManager.getAllTasks());
-//            System.out.println("Подзадачи: " + taskManager.getAllSubtasks());
-//            System.out.println("Эпики: " + taskManager.getAllEpics());
-//            System.out.println();
-//
-//            System.out.println("Удалим Эпик 2");
-//            taskManager.removeEpicById(epicTask2.getId());
-//
-//            System.out.println("Выведем окончательный список задач:");
-//            System.out.println("Обычные задачи: " + taskManager.getAllTasks());
-//            System.out.println("Подзадачи: " + taskManager.getAllSubtasks());
-//            System.out.println("Эпики: " + taskManager.getAllEpics());
-//            System.out.println();
-//
-//            System.out.println("Очистим все задачи:");
-//            taskManager.clearAllTasks();
-//
-//            System.out.println("Выведем список задач после зачистки:");
-//            System.out.println("Обычные задачи: " + taskManager.getAllTasks());
-//            System.out.println("Подзадачи: " + taskManager.getAllSubtasks());
-//            System.out.println("Эпики: " + taskManager.getAllEpics());
-//            System.out.println();
-        }
-//
-//        TaskTracker.TaskTracker.Tasks.Task testTask1 = taskManager.getTaskById(task1.getId());
-//        TaskTracker.TaskTracker.Tasks.Task testTask2 = taskManager.getEpicById(epicTask2.getId());
-//        TaskTracker.TaskTracker.Tasks.Task testTask3 = taskManager.getSubtaskById(subtask3.getId());
+        Assertions.assertEquals(savedSubtask1, subtask1, "Задачи не равны. Они не должны быть равны");
+        Assertions.assertEquals(savedSubtask2, subtask2, "Задачи не равны. Они не должны быть равны");
+        Assertions.assertEquals(savedSubtask3, subtask3, "Задачи не равны. Они не должны быть равны");
     }
-
 }
 

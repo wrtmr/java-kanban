@@ -1,7 +1,5 @@
 package TaskTracker.Managers;
-
 import TaskTracker.Tasks.*;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -156,6 +154,7 @@ public final class InMemoryTaskManager implements TaskManager {
     @Override
     public void removeTaskById(Integer id) {
         tasks.remove(id);
+        historyManager.remove(id);
     }
 
     @Override
@@ -165,14 +164,17 @@ public final class InMemoryTaskManager implements TaskManager {
             epicTask.getSubtasks().remove(id);
             updateEpicStatus(epicTask);
         }
+        historyManager.remove(id);
     }
 
     @Override
     public void removeEpicById(Integer id) {
         for (Integer subTaskId : epics.get(id).getSubtasks().keySet()) {
             subtasks.remove(subTaskId);
+            historyManager.remove(subTaskId);
         }
         epics.remove(id);
+        historyManager.remove(id);
     }
 
     private void updateEpicStatus(Epic epicTask) {

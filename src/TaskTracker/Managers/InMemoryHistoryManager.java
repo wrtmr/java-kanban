@@ -1,34 +1,89 @@
 package TaskTracker.Managers;
-
 import TaskTracker.Tasks.*;
-
-import java.util.LinkedList;
+import TaskTracker.Utilities.Node;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 
 public final class InMemoryHistoryManager implements HistoryManager{
-    private static final int HISTORY_LENGTH = 10;
-    private final LinkedList<Task> viewHistory;
+    public Node<Task> head;
+    public Node<Task> tail;
+
+    private final HashMap<Integer, Node<Task>> nodesIDs;
 
     public InMemoryHistoryManager() {
-        viewHistory = new LinkedList<>();
+        nodesIDs = new HashMap<>();
     }
 
     @Override
-    public LinkedList<Task> getHistory() {
-        return viewHistory;
+    public ArrayList<Task> getHistory() {
+        return getTasks();
+    }
+
+    @Override
+    public void remove(int id) {
+        Node<Task> nodeToRemove = nodesIDs.get(id);
+        if (nodeToRemove != null) {
+            removeNode(nodeToRemove);
+            nodesIDs.remove(id);
+        }
     }
 
     @Override
     public void add(Task task) {
-        if (viewHistory.size() + 1 > HISTORY_LENGTH) {
-            viewHistory.removeFirst();
+        if(nodesIDs.get(task.getId()) != null) {
+            Node<Task> existingNode = nodesIDs.get(task.getId());
+            nodesIDs.put(task.getId(), linkLast(task));
+            removeNode(existingNode);
+        } else {
+            nodesIDs.put(task.getId(), linkLast(task));
         }
-// В тз там вроде говорилось что надо сохранять как бы те изменения и данные которые были на момент сохранения
-// Задание: убедитесь, что задачи, добавляемые в HistoryManager, сохраняют предыдущую версию задачи и её данных.
-// Вот я и ориентировался на предыдущую версию задачи. А по скольку задача это ссылочный тип то он
-// хранит ссылку на неё (и если что-то изменится, то и в хистори тоже изменится), а чтобы сохранилась копия со старыми данными то надо скопировать/склонировать задачу
-// TaskTracker.Tasks.Task savedTask = new TaskTracker.Tasks.Task(task.getName(), task.getDescription(), task.getStatus());
-// savedTask.setId(task.getId());
-      viewHistory.add(task);
     }
+
+    private Node<Task> linkLast(Task task) {
+        Node<Task> temp = new Node<>(task);
+        if (tail == null) {
+            head = temp;
+            tail = temp;
+        } else {
+            tail.setNextNode(temp);
+            temp.setPreviousNode(tail);
+            tail = temp;
+        }
+        return tail;
+    }
+
+    private void removeNode(Node<Task> node) {
+        if (head == null) return;
+        //if (node == tail) {return;}
+        if (node == head) {
+            head = node.getNextNode();
+            node.getNextNode().setPreviousNode(null);
+            node.setNextNode(null);
+        } else if (node == tail) {
+            tail = node.getPreviousNode();
+            node.setPreviousNode(null);
+        } else {
+            node.getPreviousNode().setNextNode(node.getNextNode());
+            node.getNextNode().setPreviousNode(node.getPreviousNode());
+            node.setPreviousNode(null);
+            node.setNextNode(null);
+        }
+    }
+
+    private ArrayList<Task> getTasks(){
+        if (head == null)  return null;
+
+        ArrayList<Task> tasks = new ArrayList<>();
+        Node<Task> current = tail;
+
+        while (current != null) {
+            tasks.add(current.getValue());
+            current = current.getPreviousNode();
+        }
+
+        return tasks;
+    }
+
 }
+

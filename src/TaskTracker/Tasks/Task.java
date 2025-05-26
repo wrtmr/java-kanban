@@ -1,6 +1,5 @@
 package TaskTracker.Tasks;
 
-
 import java.util.Objects;
 
 public class Task {
@@ -13,7 +12,10 @@ public class Task {
     public int getId() { return id;}
     public String getName() { return name; }
     public String getDescription() { return description; }
-    public void setId(int id) {this.id = id;}
+
+    //Не придумал пока что делать с этими пабликами. В голову пока тяжеловесные решения лезут
+    //В материалах по обучению такого не касались. Если найду материал доделаю.
+    public void setId(int id) { this.id = id;}
     public void setStatus(TaskStatus status) { this.status = status;}
     public TaskStatus getStatus() {return status;}
 
