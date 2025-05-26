@@ -23,7 +23,7 @@ public class Task {
 
     //Не придумал пока что делать с этими пабликами. В голову пока тяжеловесные решения лезут
     //В материалах по обучению такого не касались. Если найду материал доделаю.
-    public void setId (int id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -50,8 +50,8 @@ public class Task {
             return false;
         }
         Task otherTask = (Task) object;
-        return Objects.equals(this.id, otherTask.getId())&&
-                Objects.equals(this.name, otherTask.name)&&
+        return Objects.equals(this.id, otherTask.getId()) &&
+                Objects.equals(this.name, otherTask.name) &&
                 Objects.equals(this.description, otherTask.description);
     }
 
@@ -68,7 +68,7 @@ public class Task {
             hash += name.hashCode();
         }
 
-        if(description != null) {
+        if (description != null) {
             hash += description.hashCode();
         }
 
@@ -76,9 +76,9 @@ public class Task {
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         return "TaskTracker.TaskTracker.Tasks.Task ID: " + id + ", " +
-                "Name: " + name +", " +
+                "Name: " + name + ", " +
                 "Description: " + description + ", " +
                 "Status: " + status + ".";
     }
