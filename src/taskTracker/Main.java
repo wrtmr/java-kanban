@@ -1,8 +1,8 @@
-package TaskTracker;
-import TaskTracker.Managers.HistoryManager;
-import TaskTracker.Managers.Managers;
-import TaskTracker.Managers.TaskManager;
-import TaskTracker.Tasks.*;
+package taskTracker;
+import taskTracker.managers.HistoryManager;
+import taskTracker.managers.Managers;
+import taskTracker.managers.TaskManager;
+import taskTracker.tasks.*;
 import java.util.HashMap;
 
 public class Main {

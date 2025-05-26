@@ -1,5 +1,5 @@
-package TaskTracker.Managers;
-import TaskTracker.Tasks.*;
+package taskTracker.managers;
+import taskTracker.tasks.*;
 import java.util.List;
 
 
