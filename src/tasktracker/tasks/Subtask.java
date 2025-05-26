@@ -22,8 +22,8 @@ public final class Subtask extends Task {
         if (object == null) return false;
         if (this != object && getClass() != object.getClass()) return false;
         Subtask otherTask = (Subtask) object;
-        return Objects.equals(this.id, otherTask.getId())&&
-                Objects.equals(this.name, otherTask.name)&&
+        return Objects.equals(this.id, otherTask.getId()) &&
+                Objects.equals(this.name, otherTask.name) &&
                 Objects.equals(this.description, otherTask.description) &&
                 Objects.equals(this.parentTask, otherTask.getParentTask());
     }
@@ -34,15 +34,16 @@ public final class Subtask extends Task {
         if (id > 0) {
             hash += id;
         }
+
         hash *= 31;
 
         if (name != null) {
             hash += name.hashCode();
         }
-        if(description != null) {
+        if (description != null) {
             hash += description.hashCode();
         }
-        if(parentTask != null){
+        if (parentTask != null) {
             hash += parentTask.hashCode();
         }
         return hash;
