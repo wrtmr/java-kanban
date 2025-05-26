@@ -12,7 +12,7 @@ public final class InMemoryTaskManager implements TaskManager {
     private final HashMap<Integer, Epic> epics;
     private final HistoryManager historyManager;
 
-    public InMemoryTaskManager(HistoryManager historyManager){
+    public InMemoryTaskManager(HistoryManager historyManager) {
         idCounter = 0;
         tasks = new HashMap<>();
         subtasks = new HashMap<>();
@@ -99,7 +99,7 @@ public final class InMemoryTaskManager implements TaskManager {
 
     @Override
     public void updateEpicById(Integer id, Epic newEpic) {
-        if(epics.get(id) == null){
+        if (epics.get(id) == null) {
             System.out.println("Такого ключа нет в таблице с Эпиками");
             return;
         }
@@ -117,7 +117,7 @@ public final class InMemoryTaskManager implements TaskManager {
     }
 
     @Override
-    public void clearAllTasks(){
+    public void clearAllTasks() {
         tasks.clear();
         for (Epic epicTask : epics.values()) {
            epicTask.clearSubTasks();
@@ -198,10 +198,10 @@ public final class InMemoryTaskManager implements TaskManager {
         int newCounter = 0;
 
         for (Subtask subtask : epicTask.getSubtasks().values()) {
-            if(subtask.getStatus() == TaskStatus.NEW){
+            if (subtask.getStatus() == TaskStatus.NEW) {
                 newCounter++;
             }
-            if(subtask.getStatus() == TaskStatus.DONE) {
+            if (subtask.getStatus() == TaskStatus.DONE) {
                 doneCounter++;
             }
         }

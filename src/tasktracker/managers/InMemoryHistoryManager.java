@@ -31,7 +31,7 @@ public final class InMemoryHistoryManager implements HistoryManager{
 
     @Override
     public void add(Task task) {
-        if(nodesIDs.get(task.getId()) != null) {
+        if (nodesIDs.get(task.getId()) != null) {
             Node<Task> existingNode = nodesIDs.get(task.getId());
             nodesIDs.put(task.getId(), linkLast(task));
             removeNode(existingNode);
@@ -72,7 +72,7 @@ public final class InMemoryHistoryManager implements HistoryManager{
     }
 
     private ArrayList<Task> getTasks(){
-        if (head == null)  return null;
+        if (head == null) return null;
 
         ArrayList<Task> tasks = new ArrayList<>();
         Node<Task> current = tail;
