@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 
-public final class InMemoryHistoryManager implements HistoryManager{
+public final class InMemoryHistoryManager implements HistoryManager {
     public Node<Task> head;
     public Node<Task> tail;
 
@@ -71,7 +71,7 @@ public final class InMemoryHistoryManager implements HistoryManager{
         }
     }
 
-    private ArrayList<Task> getTasks(){
+    private ArrayList<Task> getTasks() {
         if (head == null) return null;
 
         ArrayList<Task> tasks = new ArrayList<>();

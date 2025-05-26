@@ -7,6 +7,7 @@ import java.util.List;
 public interface TaskManager {
 
     boolean getInitializationStatus();
+
     ArrayList<Task> getAllTasks();
 
     ArrayList<Subtask> getAllSubtasks();
