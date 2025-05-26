@@ -12,6 +12,7 @@ public final class Subtask extends Task {
     public Epic getParentTask() {
         return parentTask;
     }
+
     public void setParentTask(Epic task) {
         this.parentTask = task;
     }

@@ -12,9 +12,11 @@ public class Task {
     public int getId() {
         return id;
     }
+
     public String getName() {
         return name;
     }
+
     public String getDescription() {
         return description;
     }
@@ -41,8 +43,12 @@ public class Task {
 
     @Override
     public boolean equals(Object object) {
-        if (object == null) return false;
-        if (this != object && getClass() != object.getClass()) return false;
+        if (object == null) {
+            return false;
+        }
+        if (this != object && getClass() != object.getClass()) {
+            return false;
+        }
         Task otherTask = (Task) object;
         return Objects.equals(this.id, otherTask.getId())&&
                 Objects.equals(this.name, otherTask.name)&&
@@ -55,14 +61,17 @@ public class Task {
         if (id > 0) {
             hash += id;
         }
+
         hash *= 31;
 
         if (name != null) {
             hash += name.hashCode();
         }
+
         if(description != null) {
             hash += description.hashCode();
         }
+
         return hash;
     }
 
