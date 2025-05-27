@@ -1,4 +1,4 @@
-package TaskTracker.Tasks;
+package tasktracker.tasks;
 
 import java.util.HashMap;
 import java.util.Objects;
@@ -6,12 +6,14 @@ import java.util.Objects;
 public final class Epic extends Task {
     private final HashMap<Integer, Subtask> subtasks;
 
-    public HashMap<Integer, Subtask> getSubtasks() { return subtasks; }
-
     public Epic(String name, String description, TaskStatus status,
                 HashMap<Integer, Subtask> subtasks) {
         super(name, description, status);
         this.subtasks = subtasks;
+    }
+
+    public HashMap<Integer, Subtask> getSubtasks() {
+        return subtasks;
     }
 
     public void clearSubTasks() {
@@ -23,8 +25,8 @@ public final class Epic extends Task {
         if (object == null) return false;
         if (this != object && getClass() != object.getClass()) return false;
         Epic otherTask = (Epic) object;
-        return Objects.equals(this.id, otherTask.getId())&&
-                Objects.equals(this.name, otherTask.name)&&
+        return Objects.equals(this.id, otherTask.getId()) &&
+                Objects.equals(this.name, otherTask.name) &&
                 Objects.equals(this.description, otherTask.description) &&
                 Objects.equals(this.subtasks, otherTask.subtasks);
     }
@@ -35,15 +37,16 @@ public final class Epic extends Task {
         if (id > 0) {
             hash += id;
         }
+
         hash *= 31;
 
         if (name != null) {
             hash += name.hashCode();
         }
-        if(description != null) {
+        if (description != null) {
             hash += description.hashCode();
         }
-        if(subtasks != null){
+        if (subtasks != null) {
             hash += subtasks.hashCode();
         }
         return hash;

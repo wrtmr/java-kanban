@@ -1,4 +1,4 @@
-package TaskTracker.Managers;
+package tasktracker.managers;
 
 public final class Managers {
 
@@ -6,5 +6,7 @@ public final class Managers {
         return new InMemoryTaskManager(historyManager);
     }
 
-    public HistoryManager getDefaultHistory() { return new InMemoryHistoryManager(); }
+    public HistoryManager getDefaultHistory() {
+        return new InMemoryHistoryManager();
+    }
 }
