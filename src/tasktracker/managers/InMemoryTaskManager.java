@@ -10,7 +10,7 @@ public class InMemoryTaskManager implements TaskManager {
     protected boolean isInitialized = false;
     protected static final HashMap<Integer, Task> tasks = new HashMap<>();
     protected static final HashMap<Integer, Subtask> subtasks = new HashMap<>();
-    protected static final HashMap<Integer, Epic> epics = new HashMap<>();;
+    protected static final HashMap<Integer, Epic> epics = new HashMap<>();
     protected final HistoryManager historyManager;
 
     public InMemoryTaskManager(HistoryManager historyManager) {
