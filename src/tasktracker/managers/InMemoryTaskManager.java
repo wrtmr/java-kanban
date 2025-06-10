@@ -1,22 +1,20 @@
 package tasktracker.managers;
+import tasktracker.Infrastructure.TaskStatus;
 import tasktracker.tasks.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public final class InMemoryTaskManager implements TaskManager {
-    private int idCounter;
-    private boolean isInitialized = false;
-    private final HashMap<Integer, Task> tasks;
-    private final HashMap<Integer, Subtask> subtasks;
-    private final HashMap<Integer, Epic> epics;
-    private final HistoryManager historyManager;
+public class InMemoryTaskManager implements TaskManager {
+    protected int idCounter;
+    protected boolean isInitialized = false;
+    protected static final HashMap<Integer, Task> tasks = new HashMap<>();
+    protected static final HashMap<Integer, Subtask> subtasks = new HashMap<>();
+    protected static final HashMap<Integer, Epic> epics = new HashMap<>();
+    protected final HistoryManager historyManager;
 
     public InMemoryTaskManager(HistoryManager historyManager) {
         idCounter = 0;
-        tasks = new HashMap<>();
-        subtasks = new HashMap<>();
-        epics = new HashMap<>();
         this.historyManager = historyManager;
         if (this.historyManager == null) {
             System.out.println("History manager is Null. Initialization stopped.");

@@ -1,4 +1,5 @@
 package historyManagersTests;
+import tasktracker.Infrastructure.TaskStatus;
 import tasktracker.managers.HistoryManager;
 import tasktracker.managers.Managers;
 import tasktracker.tasks.*;

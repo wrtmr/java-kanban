@@ -1,5 +1,7 @@
 package tasktracker.tasks;
 
+import tasktracker.Infrastructure.TaskStatus;
+
 import java.util.Objects;
 
 public class Task {
@@ -77,9 +79,9 @@ public class Task {
 
     @Override
     public String toString() {
-        return "TaskTracker.TaskTracker.Tasks.Task ID: " + id + ", " +
+        return "Task ID: " + id + ", " +
                 "Name: " + name + ", " +
                 "Description: " + description + ", " +
-                "Status: " + status + ".";
+                "Status: " + status + ". ";
     }
 }
