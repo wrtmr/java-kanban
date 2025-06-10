@@ -1,18 +1,21 @@
 package tasktracker.tasks;
 
+import tasktracker.Infrastructure.TaskStatus;
+
 import java.util.Objects;
 
 public final class Subtask extends Task {
     private Epic parentTask;
+    private int epicId;
 
     public Subtask(String name, String description, TaskStatus status) {
         super(name, description, status);
     }
-
+    public int getEpicId() { return epicId; }
+    public void setEpicId(int epicId) { this.epicId = epicId; }
     public Epic getParentTask() {
         return parentTask;
     }
-
     public void setParentTask(Epic task) {
         this.parentTask = task;
     }
@@ -47,5 +50,10 @@ public final class Subtask extends Task {
             hash += parentTask.hashCode();
         }
         return hash;
+    }
+
+    @Override
+    public String toString() {
+        return super.toString() + "Epic ID:" + epicId + ". ";
     }
 }

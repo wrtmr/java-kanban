@@ -1,8 +1,12 @@
 package tasktracker;
+import tasktracker.Infrastructure.TaskStatus;
 import tasktracker.managers.HistoryManager;
 import tasktracker.managers.Managers;
 import tasktracker.managers.TaskManager;
 import tasktracker.tasks.*;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.HashMap;
 
 public class Main {
@@ -11,11 +15,27 @@ public class Main {
         System.out.println("Поехали!");
         Managers managers = new Managers();
         HistoryManager historyManager = managers.getDefaultHistory();
-        TaskManager taskManager = managers.getDefault(historyManager);
+
+        File file = new File("tasks.csv");
+
+        // Create file and write header if not exists
+        if (!file.exists()) {
+            try {
+                file.createNewFile();
+                try (FileWriter writer = new FileWriter(file)) {
+                    writer.write("id,type,name,status,description,epic\n");
+                }
+            } catch (IOException e) {
+                System.out.println("Ошибка при создании файла.");
+                e.printStackTrace();
+            }
+        }
+
+        TaskManager taskManager = managers.getFileBacked(historyManager, file);
+
 
         generateTasks(taskManager);
         //printAllTasks(taskManager);
-
 
     }
 
@@ -37,9 +57,12 @@ public class Main {
             System.out.println(subtask);
         }
 
-        System.out.println("История:");
-        for (Task task : manager.getHistory()) {
-            System.out.println(task);
+        if (manager.getHistory() != null) {
+            System.out.println("История:");
+
+            for (Task task : manager.getHistory()) {
+                System.out.println(task);
+            }
         }
     }
 
@@ -61,13 +84,12 @@ public class Main {
                 "Погрузить шкаф в автомобиль и перевезти на новое место", TaskStatus.NEW);
         Subtask subtask3 = new Subtask("Спустить холодильник",
                 "Спустить холодильник на первый этаж и погрузить в машину", TaskStatus.NEW);
-        taskManager.createSubtask(subtask1);
-        taskManager.createSubtask(subtask2);
-        taskManager.createSubtask(subtask3);
+
         HashMap<Integer, Subtask> subtasksMap = new HashMap<>();
         subtasksMap.put(subtask1.getId(), subtask1);
         subtasksMap.put(subtask2.getId(), subtask2);
-        subtasksMap.put(subtask3.getId(), subtask2);
+        subtasksMap.put(subtask3.getId(), subtask3);
+
         Epic epicTask1 = new Epic("Перевозка вещей",
                 "Перевозка вещей на другую квартиру", TaskStatus.NEW, subtasksMap);
         taskManager.createEpicTask(epicTask1);
@@ -75,6 +97,14 @@ public class Main {
         for (Subtask task : subtasksMap.values()) {
             task.setParentTask(epicTask1);
         }
+
+        subtask1.setParentTask(epicTask1);
+        subtask2.setParentTask(epicTask1);
+        subtask3.setParentTask(epicTask1);
+
+        taskManager.createSubtask(subtask1);
+        taskManager.createSubtask(subtask2);
+        taskManager.createSubtask(subtask3);
 
         //Создадим пустой Эпик.
         subtasksMap = new HashMap<>();

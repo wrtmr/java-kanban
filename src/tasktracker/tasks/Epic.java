@@ -1,5 +1,7 @@
 package tasktracker.tasks;
 
+import tasktracker.Infrastructure.TaskStatus;
+
 import java.util.HashMap;
 import java.util.Objects;
 
@@ -12,8 +14,17 @@ public final class Epic extends Task {
         this.subtasks = subtasks;
     }
 
+    public Epic(String name, String description, TaskStatus status) {
+        super(name, description, status);
+        this.subtasks = new HashMap<>();
+    }
+
     public HashMap<Integer, Subtask> getSubtasks() {
         return subtasks;
+    }
+
+    public void addSubtask(Subtask subtask) {
+        subtasks.putIfAbsent(subtask.getId(), subtask);
     }
 
     public void clearSubTasks() {
