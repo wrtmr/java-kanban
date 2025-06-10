@@ -11,12 +11,22 @@ public final class Subtask extends Task {
     public Subtask(String name, String description, TaskStatus status) {
         super(name, description, status);
     }
-    public int getEpicId() { return epicId; }
-    public void setEpicId(int epicId) { this.epicId = epicId; }
+
+    public int getEpicId() {
+        return epicId;
+    }
+
+    public void setEpicId(int epicId) {
+        this.epicId = epicId;
+    }
+
     public Epic getParentTask() {
+
         return parentTask;
     }
+
     public void setParentTask(Epic task) {
+
         this.parentTask = task;
     }
 
