@@ -146,7 +146,7 @@ public class FileBackedTaskManager extends InMemoryTaskManager {
     private static void linkSubtasksEpics() {
         for (Integer key : subtasks.keySet()) {
             if (subtasks.get(key) != null) {
-                if(subtasks.get(key).getParentTask() == null) {
+                if (subtasks.get(key).getParentTask() == null) {
                     subtasks.get(key).setParentTask(epics.get(subtasks.get(key).getEpicId()));
                 } else {
                     epics.get(subtasks.get(key).getEpicId()).addSubtask(subtasks.get(key));
